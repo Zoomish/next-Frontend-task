@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import LoadingPosts from "./loading";
 
 async function getData(num: number) {
-  const response = await fetch(`https://taxivoshod.ru/testapi/?w=list&page=${num}`, {
+  try {
+    const response = await fetch(`https://taxivoshod.ru/testapi/?w=list&page=${num}`, {
       next: {
         revalidate: 60,
       },
@@ -14,6 +15,10 @@ async function getData(num: number) {
     if (!response.ok) throw new Error("Unable to fetch posts!");
 
     return response.json();
+  } catch (error) {
+    console.log(error);
+    getData(num=1)
+  }
 }
 
 export const metadata: Metadata = {
@@ -27,14 +32,8 @@ export default async function Blog() {
 
   useEffect(() => {
     const getPosts = async () => {
-      try {
-        const data = await getData(num)
-        setPosts(data.items)
-      } catch (error) {
-        setNum(1)
-        const data = await getData(num)
-        setPosts(data.items)
-      }
+      const data = await getData(num)
+      setPosts(data.items)
     };
     getPosts()
   }, [num])
