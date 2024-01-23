@@ -16,8 +16,15 @@ async function getData(num: number) {
 
     return response.json();
   } catch (error) {
-    console.log(error);
-    getData(num=1)
+    const response = await fetch(`https://taxivoshod.ru/testapi/?w=list&page=${1}`, {
+      next: {
+        revalidate: 60,
+      },
+    });
+
+    if (!response.ok) throw new Error("Unable to fetch posts!");
+
+    return response.json();
   }
 }
 
