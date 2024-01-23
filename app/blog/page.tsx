@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import LoadingPosts from "./loading";
 
 async function getData(num: number) {
-  if (num > 2 || num < 1) {
+  if (num > 2||num<1) {
     num = 1
   }
   const response = await fetch(`https://taxivoshod.ru/testapi/?w=list&page=${num}`, {
@@ -26,28 +26,24 @@ export const metadata: Metadata = {
 export default async function Blog() {
   const [num, setNum] = useState(1);
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
 
 
   useEffect(() => {
-    setLoading(true)
     const getPosts = async () => {
-
       const data = await getData(num)
       setPosts(data.items)
     };
     getPosts()
-    setLoading(false)
-  }, [num])
 
+  }, [num])
+  
 
   return (
     <>
       <h1>Blog page</h1>
-      {!loading
-        ? <div>
-          {posts.length != 0
-            ? <div>
+      <div>
+        {posts.length != 0
+          ? <div>
               <ul>
                 {posts.map((post: any) => (
                   <li key={post.id}>
@@ -58,12 +54,9 @@ export default async function Blog() {
               <button onClick={() => setNum(num - 1)}>Previous</button>
               <button onClick={() => setNum(num + 1)}>Next</button>
             </div>
-            : LoadingPosts()
-          }
-          </div>
-        : LoadingPosts()
-      }
-
+          : LoadingPosts()
+        }
+      </div>
     </>
   );
 }
