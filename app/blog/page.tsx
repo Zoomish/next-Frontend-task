@@ -2,6 +2,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import LoadingPosts from "./loading";
 
 async function getData(num: number) {
   if (num > 2) {
@@ -25,29 +26,40 @@ export const metadata: Metadata = {
 export default async function Blog() {
   const [num, setNum] = useState(1);
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+
 
   useEffect(() => {
+    setLoading(false)
     const getPosts = async () => {
       const data = await getData(num)
       setPosts(data.items)
     };
     getPosts()
+    setLoading(true)
+
   }, [num])
 
-  console.log([posts.length]);
 
   return (
     <>
       <h1>Blog page</h1>
       <div>
-        <ul>
-          {posts.map((post: any) => (
-            <li key={post.id}>
-              <Link href={`/blog/${post.id}`}>{post.name}</Link>
-            </li>
-          ))}
-        </ul>
-        <button onClick={() => setNum(num + 1)}>Next</button>
+        {loading
+          ? <div>
+            <ul>
+              {posts.map((post: any) => (
+                <li key={post.id}>
+                  <Link href={`/blog/${post.id}`}>{post.name}</Link>
+                </li>
+              ))}
+            </ul>
+            <button onClick={() => setNum(num - 1)}>Previous</button>
+            <button onClick={() => setNum(num + 1)}>Next</button>
+          </div>
+          : LoadingPosts()
+        }
+
       </div>
     </>
   );
