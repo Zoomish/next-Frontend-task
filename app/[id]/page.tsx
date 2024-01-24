@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 async function getData(id: string) {
   const response = await fetch(
@@ -35,6 +36,7 @@ export default async function Post({ params: { id } }: Props) {
     <>
       <h1>{post.name}</h1>
       <p>{post.text}</p>
+      <Link href='/'><button>Back</button></Link>
     </>
   );
 }
