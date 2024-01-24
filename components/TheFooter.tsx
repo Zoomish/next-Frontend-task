@@ -1,5 +1,5 @@
 const TheFooter = () => {
-  return <footer className="container">Created by &copy;Zoomish</footer>;
+  return <footer>Created by &copy;<a href="https://github.com/Zoomish">Zoomish</a></footer>;
 };
 
 export { TheFooter };
