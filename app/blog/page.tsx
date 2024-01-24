@@ -27,11 +27,6 @@ async function getData(num: number) {
     return response.json();
   }
 }
-
-export const metadata: Metadata = {
-  title: "Blog | Next App",
-};
-
 export default async function Blog() {
   const [num, setNum] = useState(1);
   const [posts, setPosts] = useState([])
