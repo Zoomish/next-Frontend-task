@@ -52,14 +52,16 @@ export default async function Blog() {
               </li>
             ))}
           </ol>
-          <button onClick={() => {
-            setNum(num - 1)
-            setPosts([])
-          }}>Previous</button>
-          <button onClick={() => {
-            setNum(num + 1)
-            setPosts([])
-          }}>Next</button>
+          <div className="divButton">
+            <button onClick={() => {
+              setNum(num - 1)
+              setPosts([])
+            }}>Previous</button>
+            <button onClick={() => {
+              setNum(num + 1)
+              setPosts([])
+            }}>Next</button>
+          </div>
         </div>
         : LoadingPosts()
       }

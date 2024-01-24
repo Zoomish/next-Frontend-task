@@ -72,3 +72,17 @@ footer {
 footer >a{
   color: #fff;
 }
+button{
+  width: 120px;
+  margin-left: 2%;
+  cursor:pointer;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-active);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+}
+.divButton{
+  display: flex;
+  justify-content: center;
+}
