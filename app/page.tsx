@@ -45,13 +45,13 @@ export default async function Blog() {
       {posts.length != 0
         ? <div>
           <h1>Blog page</h1>
-          <ul>
+          <ol>
             {posts.map((post: any) => (
               <li key={post.id}>
-                <Link href={`/${post.id}`}>{post.name}</Link>
+                {post.id}. <Link href={`/${post.id}`}>{post.name}</Link>
               </li>
             ))}
-          </ul>
+          </ol>
           <button onClick={() => {
             setNum(num - 1)
             setPosts([])

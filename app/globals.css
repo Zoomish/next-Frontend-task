@@ -35,14 +35,15 @@ h1 {
   text-align: center;
   margin-top: 0;
 }
-
+ul,ol{
+  list-style-type:none
+}
 .container {
   max-width: 900px;
   padding-left: 2rem;
   padding-right: 2rem;
   margin: 0 auto;
 }
-
 main {
   min-height: calc(100vh - 85px - 22px);
   padding-top: 1.5rem;
